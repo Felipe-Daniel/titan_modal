@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tailwind Modal Example</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .modal-container {
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="openModalButton" class="mt-4 ml-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ">
+    Open Modal
+  </button>
+
+  <div id="modalOverlay" class="modal-overlay hidden fixed w-full h-full top-0 left-0 bg-black opacity-50"></div>
+
+  <div id="myModal" class="modal-container hidden fixed w-full h-full top-0 left-0 flex items-center justify-center">
+    <button id="closeModalButton" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Pressione ESC para fechar
+    </button>
+  </div>
+
+  <script>
+    const openModalButton = document.getElementById("openModalButton");
+    const closeModalButton = document.getElementById("closeModalButton");
+    const modal = document.getElementById("myModal");
+    const modalOverlay = document.getElementById("modalOverlay");
+
+    openModalButton.addEventListener("click", () => {
+      modal.classList.remove("hidden");
+      modalOverlay.classList.remove("hidden");
+    });
+
+    closeModalButton.addEventListener("click", () => {
+      modal.classList.add("hidden");
+      modalOverlay.classList.add("hidden");
+    });
+
+    modalOverlay.addEventListener("click", () => {
+      modal.classList.add("hidden");
+      modalOverlay.classList.add("hidden");
+    });
+
+    document.body.addEventListener("keydown", function (event) {
+      if (!modal.classList.contains("hidden")) {
+        if (event.key === "Escape") {
+          modal.classList.add("hidden");
+          modalOverlay.classList.add("hidden");
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
